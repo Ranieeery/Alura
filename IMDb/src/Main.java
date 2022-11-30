@@ -7,11 +7,10 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Map;
 
-
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         // Requisição para API p/ top 250
-        String urlAPI = "https://mocki.io/v1/9a7c1ca9-29b4-4eb3-8306-1adb9d159060";
+        String urlAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_vuv0zd9w";
         var endereco = URI.create(urlAPI);
         var httpClient = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder(endereco).GET().build();
@@ -24,18 +23,29 @@ public class Main {
 
         // Exibir os dados selecionados
         for (Map<String, String> lista : listaFilmes) {
-            System.out.printf("\nNome: " + lista.get("title") +
-                    "\nAno: " + lista.get("year") +
-                    "\nEquipe: " + lista.get("crew") +
-                    "\nNota: \u001b[34m" + lista.get("imDbRating") +
-                    "\n\u001b[mCapa: " + lista.get("image") + "\n");
+            int cor;
+            StringBuilder star = new StringBuilder();
+            try {
+                if (Double.parseDouble(lista.get("imDbRating")) <= 4.5) {
+                    cor = 31;
+                } else if (Double.parseDouble(lista.get("imDbRating")) <= 7.5) {
+                    cor = 33;
+                } else cor = 32;
+            } catch (NumberFormatException e){
+                cor = 31;
+            }
 
-            /*Afazeres:
-            - Cor para nota a depender do valor (verde para vermelho)
-            - Títulos em negrito
-            - Emojis
-            - Meta: Trocar JsonParse por uma biblioteca de Json (i.e. jackson, gson)
-            */
+            try {
+                star.append("⭐".repeat((int) (Math.max(0, Double.parseDouble(lista.get("imDbRating")))/1.82)));
+            } catch (NumberFormatException e){
+                star.append("\uDB40\uDC20");
+            }
+
+            System.out.printf("\n\u001b[1mNome: \u001b[m" + lista.get("title") +
+                    "\n\u001b[1mAno: \u001b[m" + lista.get("year") +
+                    "\n\u001b[1mEquipe: \u001b[m" + lista.get("crew") +
+                    "\n\u001b[1mNota: \u001b[0;%dm" + lista.get("imDbRating") + "\u001b[0m - %s" +
+                    "\n\u001b[1mCapa: \u001b[m" + lista.get("image") + "\n", cor , star);
         }
     }
 }

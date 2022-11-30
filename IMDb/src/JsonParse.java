@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 public class JsonParse {
     private static final Pattern REGEX_ITEMS = Pattern.compile(".*\\[(.+)\\].*");
     private static final Pattern REGEX_ATRIBUTOS_JSON = Pattern.compile("\"(.+?)\":\"(.*?)\"");
-    public List<Map <String, String>> parse(String json){
+
+    public List<Map<String, String>> parse(String json) {
         Matcher matcher = REGEX_ITEMS.matcher(json);
         if (!matcher.find()) {
-
-            throw new IllegalArgumentException("Não encontrou items.");
+            throw new IllegalArgumentException("Não encontrou items. API key do IMDb datada.");
         }
 
         String[] items = matcher.group(1).split("\\},\\{");
@@ -29,10 +29,8 @@ public class JsonParse {
                 String valor = matcherAtributosJson.group(2);
                 atributosItem.put(atributo, valor);
             }
-
             dados.add(atributosItem);
         }
-
         return dados;
     }
 }

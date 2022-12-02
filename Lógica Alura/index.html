@@ -5,11 +5,30 @@
     </head>
     <body>
         <h1>Curso de lógica</h1>
-        Olá, esta é a minha primeira página feita seguindo os ensinamentos da Alura. Já conheço HTML mas sempre bom relembrar. =D
+        Olá, esta é a minha primeira página feita seguindo os ensinamentos da Alura.
+        Já conheço HTML mas sempre bom relembrar. =D
+        <br>
 
         <script>
-            alert("Página amadora adiante");
+            //alert("Página amadora adiante");
+            show("Venho estudando para aprender principalmente JavaScript <br>");
+            var ano = 2022, idade, nome = "Raniery";
+            idade = 19.4;
+            show("Estamos no ano de " + ano + ". <br> Me chamo " + nome + " e tenho " + Math.round(idade) + " anos.");
+            breakLine();
+            show("Pulou uma linha.");
+            breakLine(3);
+            show("Pulou três linhas.");
+
+            
+            function breakLine(qntdd){
+                var linha = ("<br>");
+                qntdd != null && qntdd != 0? show(linha.repeat(qntdd)) : show(linha);
+            }
+
+            function show(text, number){
+                document.write(text)
+            }
         </script>
     </body>
-
 </html>

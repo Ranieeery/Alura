@@ -9,11 +9,11 @@ function show(text, qty) {
 
 function score(points) {
     if (points > lastYear) {
-        show("A pontuação está melhor que no ano passado por " + (points - lastYear) + " pontos.")
+        show("A pontuação está melhor que no ano passado por " + (points - lastYear) + " pontos.");
     } else if (points < lastYear) {
-        show("A pontuação está pior que no ano passado por " + (lastYear - points) + " pontos.")
+        show("A pontuação está pior que no ano passado por " + (lastYear - points) + " pontos.");
     } else {
-        show("Sua pontuação está igual ao ano passado.")
+        show("Sua pontuação está igual ao ano passado.");
     }
     show("FIM")
 }
@@ -24,5 +24,7 @@ draw = parseInt(prompt("Insira o número de empates."));
 lastYear = parseInt(prompt("Insira a pontuação do ano passado."));
 
 points = (victory * 3) + draw;
-show("O total de pontos é " + points, 2)
+show("O total de pontos é " + points, 2);
 score(points);
+
+show("<a href=\"../index.html\">Calculadora de IMC</a>");

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: black; color: yellow; text-align: center">
 
 <head>
+    <meta charset="UTF-8">
+    <title>Pontos futebol</title>
 </head>
 
 <body>
@@ -17,11 +19,11 @@
 
         function score(points) {
             if (points > lastYear) {
-                show("A pontuação está melhor que no ano passado por " + (points - lastYear) + " pontos.")
+                show("A pontuação está melhor que no ano passado por " + (points - lastYear) + " pontos.");
             } else if (points < lastYear) {
-                show("A pontuação está pior que no ano passado por " + (lastYear - points) + " pontos.")
+                show("A pontuação está pior que no ano passado por " + (lastYear - points) + " pontos.");
             } else {
-                show("Sua pontuação está igual ao ano passado.")
+                show("Sua pontuação está igual ao ano passado.");
             }
             show("FIM")
         }
@@ -32,8 +34,10 @@
         lastYear = parseInt(prompt("Insira a pontuação do ano passado."));
 
         points = (victory * 3) + draw;
-        show("O total de pontos é " + points, 2)
+        show("O total de pontos é " + points, 2);
         score(points);
+
+        show("<a href=\"../index.html\">Menu</a>");
     </script>
 </body>
 

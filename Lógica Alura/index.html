@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
+<html style="text-align: center">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página inicial</title>
+</head>
+
+<body>
+    <div style="background-color: black; color: yellow">
         <h1>Curso de lógica</h1>
+        <a href="./IMC/imc.html" style="color: blue;">Calculadora de IMC</a>
+        <a href="./Football/football.html" style="color: blue;">Pontos de futebol</a>
+        <a href="./Random/random.html" style="color: blue;">Número aleatório</a>
+        <br><br>
+    </div>
+    <div>
         Olá, esta é a minha primeira página feita seguindo os ensinamentos da Alura.
         Já conheço HTML mas sempre bom relembrar. =D
         <br>
 
         <script>
+
             //alert("Página amadora adiante");
             show("Venho estudando para aprender principalmente JavaScript <br>");
             var ano = 2022, idade, nome = "Raniery";
@@ -20,15 +31,17 @@
             breakLine(3);
             show("Pulou três linhas.");
 
-            
-            function breakLine(qntdd){
+
+            function breakLine(qntdd) {
                 var linha = ("<br>");
-                qntdd != null && qntdd != 0? show(linha.repeat(qntdd)) : show(linha);
+                qntdd != null && qntdd != 0 ? show(linha.repeat(qntdd)) : show(linha);
             }
 
-            function show(text, number){
+            function show(text, number) {
                 document.write(text)
             }
         </script>
-    </body>
+    </div>
+</body>
+
 </html>

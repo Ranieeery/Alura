@@ -43,4 +43,5 @@ imc("Ronaldo", 79, 1.75, 2);
 show("A soma dos imc de todos presentes é " + soma.toFixed(2));
 
 show("<h2>*** Calcule seu IMC ***</h2>", 2)
-user();
+//user();
+show("<a href=\"../index.html\">Menu</a>");

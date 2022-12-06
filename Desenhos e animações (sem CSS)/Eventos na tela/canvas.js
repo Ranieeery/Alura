@@ -1,37 +1,26 @@
-//Desenha um alvo na tela
-var tela = document.querySelector('canvas');
-var pincel = tela.getContext('2d');
+let canvas = document.querySelector('canvas');
+let brush = canvas.getContext('2d');
+brush.fillStyle = 'lightgray';
+brush.fillRect(0, 0, 600, 400);
 
-pincel.fillStyle = 'lightgray';
-pincel.fillRect(0, 0, 600, 400);
+function screenCircle(x, y, raio) {
 
-var raio = 10;
-
-function desenhaCirculo(x, y, raio, cor) {
-
-    pincel.fillStyle = cor;
-    pincel.beginPath();
-    pincel.arc(x, y, raio, 0, 2 * Math.PI);
-    pincel.fill();
+    brush.fillStyle = 'blue';
+    brush.beginPath();
+    brush.arc(x, y, raio, 0, 2 * Math.PI);
+    brush.fill();
 }
 
-desenhaCirculo(300, 200, raio + 20, 'red');
-desenhaCirculo(300, 200, raio + 10, 'white');
-desenhaCirculo(300, 200, raio, 'red');
-
-function dispara(evento) {
-
-    var x = evento.pageX - tela.offsetLeft;
-    var y = evento.pageY - tela.offsetTop;
-
-
-    if (x > 300 - raio
-        && x < 300 + raio
-        && y > 200 - raio
-        && y < 200 + raio) {
-
-        alert('Acertou');
-    }
+function screenClear() {
+    brush.clearRect(0, 0, 600, 400);
 }
 
-tela.onclick = dispara;
+var x = 20;
+
+function screeanUpdate() {
+    screenClear();
+    screenCircle(x, 20, 10);
+    x++;
+}
+
+setInterval(screeanUpdate, 10);

@@ -9,9 +9,9 @@ function show(text, qty) {
 
 function check() {
     const answer = document.querySelector("input");
-    if (answer.value < findNumber) {
+    if (parseInt(answer.value) < findNumber) {
         alert("Valor inserido menor");
-    } else if (answer.value > findNumber) {
+    } else if (parseInt(answer.value) > findNumber) {
         alert("Valor inserido maior");
     } else {
         show('<div style="background-color:green; color:gold; text-align: center"><h2>Você acertou!!</h2><a href="../index.html" style="color: white;">Voltar para o menu</a></div>');

@@ -8,26 +8,36 @@
 
 <body>
     <canvas width="600" height="400"></canvas>
-    <script>
-        let canvas = document.querySelector('canvas');
-        var brush = canvas.getContext('2d');
+    <canvas width="600" height="400"></canvas>
 
-        brush.fillStyle = 'gray';
+    <script>
+
+        let canvas = document.querySelector('canvas');
+        let brush = canvas.getContext('2d');
+        brush.fillStyle = 'lightgray';
         brush.fillRect(0, 0, 600, 400);
 
-        document.addEventListener("click", function(mouseClick) {
-            let x = mouseClick.clientX - canvas.offsetLeft;
-            let y = mouseClick.clientY - canvas.offsetLeft;
-            brushClick(x, y);
-            //alert(`X: ${x}; Y: ${y}`);
-        })
+        function screenCircle(x, y, raio) {
 
-        function brushClick(x, y){
-            brush.fillStyle = 'red';
+            brush.fillStyle = 'blue';
             brush.beginPath();
-            brush.arc(x, y, 10, 0, 2 * Math.PI);
+            brush.arc(x, y, raio, 0, 2 * Math.PI);
             brush.fill();
         }
+
+        function screenClear() {
+            brush.clearRect(0, 0, 600, 400);
+        }
+
+        var x = 20;
+
+        function screeanUpdate() {
+            screenClear();
+            screenCircle(x, 20, 10);
+            x++;
+        }
+
+        setInterval(screeanUpdate, 10);
 
     </script>
 </body>

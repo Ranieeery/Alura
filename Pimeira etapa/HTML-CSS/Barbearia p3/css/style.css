@@ -136,6 +136,20 @@ form label, form legend {
     transform: scale(1.1);
 }
 
+table {
+    margin: 20px 0 40px;
+}
+
+thead {
+    background: gray;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 8px 15px;
+}
 
 /*Hierarquia do menor para o maior
 p {

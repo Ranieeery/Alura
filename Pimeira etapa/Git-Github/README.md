@@ -74,8 +74,16 @@ $ git pull nome branch
 # GitHub
 
 ```shell
+# Adiciona um vínculo com o repositório online
 $ git remote add origin link
+
+# Push para o repositório
 $ git push -u origin master
+
+# Para trocar a branch de master para main
+$ git branch -m master main
+$ git push -u origin main
+
 ```
 
 # Branch e merge

@@ -1,8 +1,8 @@
 class Conta {
-    double saldo;
+    private double saldo;
     int agencia;
     int numero;
-    String titular;
+    Cliente titular;
 
     public void deposito(double valor) {
         this.saldo += valor;
@@ -12,7 +12,8 @@ class Conta {
         if (this.saldo >= valor) {
             this.saldo -= valor;
             return true;
-        } else return false;
+        } else
+            return false;
     }
 
     public boolean transfere(double valor, Conta destino) {
@@ -20,6 +21,11 @@ class Conta {
             this.saldo -= valor;
             destino.deposito(valor);
             return true;
-        } else return false;
+        } else
+            return false;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
     }
 }

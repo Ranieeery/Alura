@@ -11,6 +11,7 @@ public class TesteGetSet {
     conta.setTitular(robertoCliente);
 
     System.out.println(conta.getTitular().getNome());
+    System.out.println(conta.getTitular());
     
   }
 }

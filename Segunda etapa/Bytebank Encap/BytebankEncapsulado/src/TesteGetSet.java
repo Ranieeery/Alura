@@ -1,16 +1,14 @@
 public class TesteGetSet {
   public static void main(String[] args) {
-    Conta conta = new Conta();
+    Conta conta = new Conta(1337, 24226);
+    System.out.println(conta.getAgencia());
 
-    conta.setNumero(1337);
-    System.out.println(conta.getNumero());
+    Conta conta1 = new Conta(3127, 18642);
+    System.out.println(conta1.getAgencia());
 
-    Cliente robertoCliente = new Cliente();
-    robertoCliente.setNome("Roberto");
-
-    conta.setTitular(robertoCliente);
-
-    System.out.println(conta.getTitular().getNome());
-    System.out.println(conta.getTitular());
+    Conta conta2 = new Conta(9523, 41867);
+    System.out.println(conta2.getAgencia());
+    
+    System.out.println("O total de contas é " + Conta.getTotal());
   }
 }

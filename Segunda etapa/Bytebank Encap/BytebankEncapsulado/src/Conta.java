@@ -3,6 +3,15 @@ class Conta {
     private int agencia;
     private int numero;
     private Cliente titular;
+    private static int total;
+
+    public Conta(int agencia, int numero) {
+        Conta.total++;
+        this.agencia = agencia;
+        this.numero = numero;
+        System.out.println("Estou criando uma conta " + this.numero);
+        System.out.println("O total de contas existentes é " + Conta.total);
+    }
 
     public void deposito(double valor) {
         this.saldo += valor;
@@ -51,5 +60,9 @@ class Conta {
 
     public void setTitular(Cliente titular) {
       this.titular = titular;
+    }
+
+    public static int getTotal() {
+      return Conta.total;
     }
 }

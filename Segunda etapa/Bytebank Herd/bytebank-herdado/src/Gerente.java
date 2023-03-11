@@ -7,13 +7,13 @@ public class Gerente extends Funcionario{
   }
 
   public double getBonificacao() {
-    return super.getSalario();
+    return super.getBonificacao() + super.getSalario();
   }
 
   // Com protected, não é necessário o uso do super
   // public double getBonificacao() {
   //   return this.getSalario();
-  // }
+  // }  
 
   public boolean autenticacao(int senha) {
     if (this.senha == senha) {

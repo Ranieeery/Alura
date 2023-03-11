@@ -7,7 +7,5 @@ public class TesteGerente {
 
     System.out.println(g1.autenticacao(4321));
     System.out.println(g1.autenticacao(1234));
-
-    System.out.println(g1.getSalario());
   }
 }

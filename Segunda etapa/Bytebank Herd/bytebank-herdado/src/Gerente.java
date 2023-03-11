@@ -10,6 +10,11 @@ public class Gerente extends Funcionario{
     return super.getSalario();
   }
 
+  // Com protected, não é necessário o uso do super
+  // public double getBonificacao() {
+  //   return this.getSalario();
+  // }
+
   public boolean autenticacao(int senha) {
     if (this.senha == senha) {
       System.out.println("Acesso permitido!");

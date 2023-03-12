@@ -1,4 +1,4 @@
-public class Funcionario {
+public abstract class Funcionario {
   private String nome;
   private String cpf;
   private double salario;
@@ -11,9 +11,8 @@ public class Funcionario {
     System.out.printf("Funcionário %s, CPF %s com salário de R$%.2f criado com sucesso!%n", this.nome, this.cpf, this.salario);
   }
 
-  public double getBonificacao() {
-    return this.salario * 0.05;
-  }
+  // Método abstract não tem corpo, mas é obrigatório que as classes filhas o implementem
+  public abstract double getBonificacao();
 
   public String getNome() {
     return nome;

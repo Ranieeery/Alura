@@ -1,5 +1,5 @@
-class Conta {
-    private double saldo;
+public abstract class Conta {
+    protected double saldo;
     private int agencia;
     private int numero;
     private Cliente titular;
@@ -21,9 +21,7 @@ class Conta {
         System.out.println("O total de contas existentes é " + Conta.total);
     }
     
-    public void deposito(double valor) {
-        this.saldo += valor;
-    }
+    public abstract void deposito(double valor);
 
     public boolean saque(double valor) {
         if (this.saldo >= valor) {

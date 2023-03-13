@@ -1,3 +1,5 @@
+import Cargos.*;
+import Sistema.*;
 public class TesteReferencias {
   public static void main(String[] args) {
     Gerente g1 = new Gerente("Caio", "111.222.333-00", 2500, 1230);

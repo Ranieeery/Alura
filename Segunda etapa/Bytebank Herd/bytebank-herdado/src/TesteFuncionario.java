@@ -1,3 +1,5 @@
+import Cargos.Gerente;
+
 public class TesteFuncionario {
   public static void main(String[] args) {
     // Funcionario func = new Funcionario("Pedro Delesporte", "123.456.789-00", 2500);

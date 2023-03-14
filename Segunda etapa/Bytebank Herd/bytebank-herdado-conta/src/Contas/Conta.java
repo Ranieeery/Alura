@@ -1,3 +1,4 @@
+package Contas;
 public abstract class Conta {
     protected double saldo;
     private int agencia;
@@ -9,6 +10,7 @@ public abstract class Conta {
         Conta.total++;
         this.agencia = agencia;
         this.numero = numero;
+        this.titular = new Cliente();
         System.out.println("Estou criando uma conta " + this.numero);
         System.out.println("O total de contas existentes é " + Conta.total);
     }

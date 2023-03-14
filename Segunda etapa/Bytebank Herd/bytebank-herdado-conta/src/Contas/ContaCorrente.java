@@ -1,4 +1,8 @@
-public class ContaCorrente extends Conta{
+package Contas;
+
+import Funções.Tributo;
+
+public class ContaCorrente extends Conta implements Tributo{
   public ContaCorrente(int agencia, int numero) {
     super(agencia, numero, "Conta Corrente");
   }
@@ -12,5 +16,10 @@ public class ContaCorrente extends Conta{
   @Override
   public void deposito(double valor) {
     super.saldo += valor;
+  }
+
+  @Override
+  public double getValorImposto() {
+    return super.saldo * 0.01;
   }
 }

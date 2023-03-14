@@ -1,3 +1,6 @@
+import Contas.ContaCorrente;
+import Contas.ContaPoupanca;
+
 public class TesteContas {
   public static void main(String[] args) {
     ContaCorrente cc = new ContaCorrente(111, 222);

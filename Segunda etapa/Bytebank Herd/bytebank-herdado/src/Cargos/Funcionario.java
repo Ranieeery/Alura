@@ -15,6 +15,8 @@ public abstract class Funcionario {
   // Método abstract não tem corpo, mas é obrigatório que as classes filhas o implementem
   public abstract double getBonificacao();
 
+  public abstract String getCargo();
+
   public String getNome() {
     return nome;
   }

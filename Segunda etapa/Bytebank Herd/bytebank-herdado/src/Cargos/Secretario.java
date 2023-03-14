@@ -8,4 +8,9 @@ public class Secretario extends Funcionario {
   public double getBonificacao() {
     return 250;
   }
+
+  @Override
+  public String getCargo() {
+    return "Secretário";
+  }
 }

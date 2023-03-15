@@ -1,3 +1,5 @@
+package Sistema;
+
 public class Fluxo {
 
     public static void main(String[] args) throws Excecao {
@@ -12,9 +14,9 @@ public class Fluxo {
         System.out.println("Fim do metodo1");
     }
 
-    private static void metodo2() throws Excecao{
+    private static void metodo2() throws Excecao {
         System.out.println("Inicio do metodo2");
-        for(int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             System.out.println(i);
         }
         System.out.println("Fim do metodo2");

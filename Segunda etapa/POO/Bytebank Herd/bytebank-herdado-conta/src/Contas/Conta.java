@@ -1,4 +1,7 @@
 package Contas;
+
+import Funções.SaldoInsuficienteException;
+
 public abstract class Conta {
     protected double saldo;
     private int agencia;
@@ -25,20 +28,16 @@ public abstract class Conta {
     
     public abstract void deposito(double valor);
 
-    public boolean saque(double valor) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
-            return true;
-        } else
-            return false;
+    public void saque(double valor) {
+        if (this.saldo < valor) {
+            throw new SaldoInsuficienteException("Saldo: " + this.saldo + " | Valor: " + valor);
+        }
+        this.saldo -= valor;
     }
 
-    public boolean transfere(double valor, Conta destino) {
-        if (this.saque(valor)) {
-            destino.deposito(valor);
-            return true;
-        } else
-            return false;
+    public void transfere(double valor, Conta destino) {
+        this.saque(valor);
+        destino.deposito(valor);
     }
 
     public double getSaldo() {

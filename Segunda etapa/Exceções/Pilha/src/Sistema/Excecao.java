@@ -1,3 +1,5 @@
+package Sistema;
+
 public class Excecao extends Exception {
   public Excecao() {
     super();

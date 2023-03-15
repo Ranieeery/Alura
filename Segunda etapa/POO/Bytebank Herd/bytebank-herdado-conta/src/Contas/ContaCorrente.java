@@ -8,9 +8,9 @@ public class ContaCorrente extends Conta implements Tributo{
   }
 
   @Override
-  public boolean saque(double valor) {
+  public void saque(double valor) {
     double valorSaque = valor + 0.5;
-    return super.saque(valorSaque);
+    super.saque(valorSaque);
   }
 
   @Override

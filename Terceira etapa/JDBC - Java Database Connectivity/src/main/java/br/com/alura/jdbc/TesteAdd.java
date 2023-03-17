@@ -1,24 +1,34 @@
 package br.com.alura.jdbc;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 
 public class TesteAdd {
   public static void main(String[] args) throws SQLException {
+    String nome = JOptionPane.showInputDialog("Digite o nome do produto").toUpperCase();
+    String descricao = JOptionPane.showInputDialog("Digite a descrição do produto").toUpperCase();
+
     ConnectionFactory connectionFactory = new ConnectionFactory();
-    Connection connection = connectionFactory.recupConnection();
+    try (Connection connection = connectionFactory.recupConnection()) {
+      connection.setAutoCommit(false);
 
-    Statement statement = connection.createStatement();
-    statement.execute("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES ('Mouse', 'Mouse sem fio')",
-        Statement.RETURN_GENERATED_KEYS);
-    ResultSet resultSet = statement.getGeneratedKeys();
+      try (PreparedStatement statement = connection
+          .prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)",
+              Statement.RETURN_GENERATED_KEYS)) {
 
-    while (resultSet.next()) {
-      Integer id = resultSet.getInt(1);
-      System.out.println("O id criado foi: " + id);
+        ConnectionFactory.addVar(nome, descricao, statement);
+        // ConnectionFactory.addVar("RÁDIO", "RADIO DE BATERIA", statement);
+
+        connection.commit();
+        statement.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Rollback executado");
+        connection.rollback();
+      }
     }
   }
 }

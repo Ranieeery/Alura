@@ -1,9 +1,9 @@
 package br.com.alura.jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaLista {
   public static void main(String[] args) throws SQLException {
@@ -11,8 +11,8 @@ public class TestaLista {
     ConnectionFactory connectionFactory = new ConnectionFactory();
     Connection connection = connectionFactory.recupConnection();
 
-    Statement statement = connection.createStatement();
-      statement.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+    PreparedStatement statement = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+      statement.execute();
       ResultSet resultSet = statement.getResultSet();
 
       while (resultSet.next()) {

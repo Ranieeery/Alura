@@ -1,9 +1,12 @@
-package br.com.alura.jdbc;
+package br.com.alura.jdbc.teste;
 
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
+import br.com.alura.jdbc.ConnectionFactory;
+
 import java.sql.PreparedStatement;
 
 public class TesteAdd {

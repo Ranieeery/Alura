@@ -18,7 +18,7 @@ public class ProdutoDao {
         this.em.persist(produto);
     }
 
-    public void atualizar(Produto produto) {
+    public void atualizar(Produto produto) {git
         this.em.merge(produto);
     }
 

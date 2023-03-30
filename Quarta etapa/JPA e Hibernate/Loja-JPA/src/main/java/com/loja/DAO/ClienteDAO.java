@@ -1,25 +1,20 @@
 package com.loja.DAO;
 
-import com.loja.modelo.Pedidos;
-import com.loja.modelo.Produto;
+import com.loja.modelo.Cliente;
 import jakarta.persistence.EntityManager;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-public class PedidoDao {
+public class ClienteDAO {
     private EntityManager em;
 
-    public PedidoDao(EntityManager em) {
+    public ClienteDAO(EntityManager em) {
         this.em = em;
     }
 
-    public void cadastro(Pedidos pedidos) {
-        this.em.persist(pedidos);
+    public void cadastro(Cliente cliente) {
+        this.em.persist(cliente);
     }
 
-    public void atualizar(Pedidos pedidos) {
-        this.em.merge(pedidos);
+    public Cliente buscaId(Long id) {
+        return em.find(Cliente.class, id);
     }
-
 }

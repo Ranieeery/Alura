@@ -8,6 +8,7 @@ import com.loja.util.JPAUtil;
 import jakarta.persistence.EntityManager;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CadastroDeProdutos {
 
@@ -16,8 +17,11 @@ public class CadastroDeProdutos {
         EntityManager em = JPAUtil.getEntityManager();
         ProdutoDao produtoDao = new ProdutoDao(em);
 
-        System.out.println("Buscando um preço pelo ID: " + produtoDao.buscaId(1L).getPreco());
-        produtoDao.buscarTodos().forEach(p -> System.out.println(p.getId() + " - " + p.getNome()));
+        Produto produto = produtoDao.buscaId(1L);
+        System.out.println("Preço do produto: " + produto.getPreco());
+
+        List<Produto> precoComNome = produtoDao.buscarPorCategoria("Informática");
+        precoComNome.forEach(p -> System.out.println(p.getId() + " - " + p.getNome()));
 
         produtoDao.buscarPorNome("MagaReader").forEach(p -> System.out.println(p.getId() + " - " + p.getNome()));
 

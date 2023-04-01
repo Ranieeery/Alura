@@ -23,18 +23,20 @@ public class CadastroDePedido {
         Produto produto = produtoDao.buscaId(1L);
         Produto produto2 = produtoDao.buscaId(2L);
         Produto produto3 = produtoDao.buscaId(3L);
-        Pedidos pedido = new Pedidos(clienteDAO.buscaId(1L));
-        Pedidos pedido2 = new Pedidos(clienteDAO.buscaId(1L));
+        Cliente cliente = clienteDAO.buscaId(1L);
 
         em.getTransaction().begin();
 
+        Pedidos pedido = new Pedidos(cliente);
         pedido.adicionarItem(new ItemPedido(10, pedido, produto));
-        pedido.adicionarItem(new ItemPedido(40, pedido, produto2));
+        pedido.adicionarItem(new ItemPedido(20, pedido, produto2));
 
+        Pedidos pedido2 = new Pedidos(cliente);
         pedido2.adicionarItem(new ItemPedido(2, pedido2, produto3));
 
         PedidoDao pedidoDao = new PedidoDao(em);
         pedidoDao.cadastro(pedido);
+        pedidoDao.cadastro(pedido2);
 
         em.getTransaction().commit();
 
@@ -78,7 +80,6 @@ public class CadastroDePedido {
         clienteDAO.cadastro(cliente);
 
         em.getTransaction().commit();
-
         em.close();
     }
 }

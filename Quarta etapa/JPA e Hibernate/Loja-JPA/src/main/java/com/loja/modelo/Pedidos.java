@@ -64,6 +64,10 @@ public class Pedidos {
         this.cliente = cliente;
     }
 
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
     public void adicionarItem(ItemPedido item) {
         item.setPedido(this);
         this.itens.add(item);

@@ -8,6 +8,7 @@ import jdk.jfr.Category;
 
 @Entity
 @Table(name = "produtos")
+@NamedQuery(name = "Produto.listar", query = "select p from Produto p where p.categoria.nome = :nomeCategoria")
 public class Produto {
 
     @Id
@@ -18,7 +19,7 @@ public class Produto {
     private BigDecimal preco;
     private LocalDate dataCadastro = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
     public Produto() {
@@ -34,6 +35,10 @@ public class Produto {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

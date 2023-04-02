@@ -24,7 +24,7 @@ public class TesteCriteria {
     public static void cadastrarProduto() {
         Categoria moveis = new Categoria("Móveis diversos");
         Categoria roupas = new Categoria("Roupas");
-        Categoria equipamentos = new Categoria("Equipamentos");
+        Categoria equipamentos = new Categoria("Informática");
 
         Produto produto = new Produto("Mesa", "Mesa com suporte e ajuste de altura", BigDecimal.valueOf(799.0), moveis);
         Produto produto2 = new Produto("Cadeira", "Cadeira com suporte e ajuste de altura", BigDecimal.valueOf(499.0), moveis);

@@ -19,7 +19,7 @@ public class Pedidos {
     private BigDecimal valorTotal = BigDecimal.ZERO;
     private LocalDate dataCadastro = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)

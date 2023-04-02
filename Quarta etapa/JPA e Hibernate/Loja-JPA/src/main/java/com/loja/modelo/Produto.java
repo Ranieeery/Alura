@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
-import jdk.jfr.Category;
+
 
 @Entity
 @Table(name = "produtos")
 @NamedQuery(name = "Produto.listar", query = "select p from Produto p where p.categoria.nome = :nomeCategoria")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto {
 
     @Id

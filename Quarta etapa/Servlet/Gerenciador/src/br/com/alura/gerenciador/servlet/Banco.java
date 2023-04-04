@@ -9,9 +9,9 @@ public class Banco {
 	
 	static {
 		Empresa empresa = new Empresa();
-		empresa.setNome("Alura");
+		empresa.setNome("Empresa 1 LTDA");
 		Empresa empresa2 = new Empresa();
-		empresa2.setNome("Caelum");
+		empresa2.setNome("Empresa 2 TM");
 		lista.add(empresa);
 		lista.add(empresa2);
 	}

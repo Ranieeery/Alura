@@ -1,5 +1,5 @@
 public class TesteMetodo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Conta contaPedro = new Conta();
 
         contaPedro.deposita(500);

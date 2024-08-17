@@ -1,0 +1,8 @@
+- Java 17
+- Spring Boot3
+- Hibernate
+- Lombok
+- MySQL
+- Flyway
+- JUnit5
+- DTO Pattern - Data Transfer Object

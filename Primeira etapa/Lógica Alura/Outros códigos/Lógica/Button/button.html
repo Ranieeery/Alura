@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tabuada</title>
+</head>
+
+<body>
+    <h1>Adivinhe o número (fixo)</h1>
+    <h2>Números de 1 a 10</h2>
+    <input />
+    <button>Comparar</button>
+    <script>
+        let secretNumbers = sortNumbers(4);
+        let check = false;
+
+        let inLog = document.querySelector("input");
+        let button = document.querySelector("button");
+        inLog.focus();
+        button.onclick = inputCheck;
+
+        window.document.addEventListener("keydown", (event) => {
+            if (event.keyCode === 13) {
+                inputCheck();
+            }
+        })
+
+        function inputCheck() {
+            for (let i = 0; i < secretNumbers.length; i++) {
+                if (inLog.value == secretNumbers[i]) {
+                    alert("Você acertou!!!");
+                    check = true;
+                    break;
+                }
+            }
+            if (check == false) {
+                alert("Você errou");
+            }
+            inLog.value = "";
+        }
+
+        function sort (){
+            return Math.round(Math.random()*10);
+        }
+
+        function sortNumbers(qty){
+            var secrets = [];
+            for (var i = 0; i < qty; i++){
+                secrets.push(sort());
+            }
+            return secrets;
+        }
+
+    </script>
+</body>
+
+</html>

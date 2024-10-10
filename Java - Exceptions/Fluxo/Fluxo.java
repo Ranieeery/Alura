@@ -1,5 +1,4 @@
-public class Main {
-
+public class Fluxo {
     public static void main(String[] args) {
         System.out.println("Ini do main");
         metodo1();
@@ -14,9 +13,13 @@ public class Main {
 
     private static void metodo2() {
         System.out.println("Ini do metodo2");
-        for(int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             System.out.println(i);
-            int a = i / 0;
+            try {
+                int a = i / 0;
+            } catch (ArithmeticException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("Fim do metodo2");
     }

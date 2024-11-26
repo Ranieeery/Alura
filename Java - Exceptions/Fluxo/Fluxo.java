@@ -22,7 +22,12 @@ public class Fluxo {
         for (int i = 1; i <= 5; i++) {
             System.out.println(i);
             Conta c = null;
-            c.deposita();
+            try {
+                c.deposita();
+            } catch (MyException ex) {
+                System.out.println("Exception " + ex.getMessage());
+                ex.printStackTrace();
+            }
         }
         System.out.println("Fim do metodo2");
     }

@@ -1,3 +1,7 @@
+package Test;
+
+import Model.Conexao;
+
 public class TesteConexao {
     public static void main(String[] args) {
 

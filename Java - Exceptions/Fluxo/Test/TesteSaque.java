@@ -1,3 +1,8 @@
+package Test;
+
+import Model.Conta;
+import Model.MyException;
+
 public class TesteSaque {
     public static void main(String[] args) {
         Conta conta = new Conta();

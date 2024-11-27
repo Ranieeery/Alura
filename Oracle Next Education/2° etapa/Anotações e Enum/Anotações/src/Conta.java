@@ -56,6 +56,6 @@ public class Conta {
   
   @Override
   public String toString() {
-    return "Conta [id=" + id + ", titular=" + titular + ", banco=" + banco + ", agencia=" + agencia + ", numero=" + numero + "]";
+    return "Model.Conta [id=" + id + ", titular=" + titular + ", banco=" + banco + ", agencia=" + agencia + ", numero=" + numero + "]";
   }
 }

@@ -1,3 +1,5 @@
+package Model;
+
 public class Conexao implements AutoCloseable{
     public Conexao() {
         System.out.println("Abrindo conexão");

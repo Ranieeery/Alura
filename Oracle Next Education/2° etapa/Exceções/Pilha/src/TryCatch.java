@@ -6,7 +6,7 @@ public class TryCatch {
       int a = 1 / 0;
       System.out.println("Resultado: " + a);
 
-      // Fluxo b = null;
+      // Test.Fluxo b = null;
       // System.out.println(b.getClass());
 
       // char c = 'c';

@@ -1,9 +1,16 @@
 package Test;
 
-import Model.Conta;
+import Model.ContaCorrente;
+import Model.ContaPoupanca;
 
 public class ObjectTest {
     public static void main(String[] args) {
+
+        Object cc = new ContaCorrente(1, 3003);
+        Object cp = new ContaPoupanca(2, 3004);
+
+        println(cc);
+        println(cp);
 
     }
 
@@ -19,7 +26,7 @@ public class ObjectTest {
 
     }
 
-    static void println(Conta conta) {
+    static void println(Object conta) {
 
     }
 }

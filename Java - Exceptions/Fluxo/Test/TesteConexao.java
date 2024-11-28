@@ -5,7 +5,7 @@ import Model.Conexao;
 public class TesteConexao {
     public static void main(String[] args) {
 
-
+        // try-with-resources
         try (Conexao conexao = new Conexao()) {
             conexao.leDados();
         } catch (IllegalStateException ex) {
@@ -14,6 +14,7 @@ public class TesteConexao {
 
         //----------------------------------------------
 
+        // try-catch-finally
         Conexao con = null;
 
         try {

@@ -1,4 +1,0 @@
-ALTER TABLE medico MODIFY numero VARCHAR (20) NULL;
-ALTER TABLE medico MODIFY complemento VARCHAR (100) NULL;
-ALTER TABLE paciente MODIFY numero VARCHAR (20) NULL;
-ALTER TABLE paciente MODIFY complemento VARCHAR (100) NULL;

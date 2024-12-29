@@ -33,11 +33,6 @@ public class Tutor {
         this.email = email;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
     public Long getId() {
         return id;
     }
@@ -64,5 +59,10 @@ public class Tutor {
         if (o == null || getClass() != o.getClass()) return false;
         Tutor tutor = (Tutor) o;
         return Objects.equals(id, tutor.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

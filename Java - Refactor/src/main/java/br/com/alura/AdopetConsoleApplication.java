@@ -16,7 +16,7 @@ public class AdopetConsoleApplication {
         System.out.println("##### BOAS VINDAS AO SISTEMA ADOPET CONSOLE #####");
         try {
             int opcaoEscolhida = 0;
-            while (opcaoEscolhida != 5) {
+            while (true) {
                 System.out.println("\nDIGITE O NÚMERO DA OPERAÇÃO DESEJADA:");
                 System.out.println("1 -> Listar abrigos cadastrados");
                 System.out.println("2 -> Cadastrar novo abrigo");

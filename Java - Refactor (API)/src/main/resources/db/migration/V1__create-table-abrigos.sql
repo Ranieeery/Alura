@@ -1,0 +1,7 @@
+CREATE TABLE abrigos(
+    id       BIGINT       NOT NULL AUTO_INCREMENT,
+    nome     VARCHAR(100) NOT NULL UNIQUE,
+    telefone VARCHAR(14)  NOT NULL UNIQUE,
+    email    VARCHAR(100) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);

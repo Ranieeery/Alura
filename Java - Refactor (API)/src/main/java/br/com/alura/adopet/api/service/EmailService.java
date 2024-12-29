@@ -1,6 +1,5 @@
 package br.com.alura.adopet.api.service;
 
-import br.com.alura.adopet.api.model.Adocao;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;

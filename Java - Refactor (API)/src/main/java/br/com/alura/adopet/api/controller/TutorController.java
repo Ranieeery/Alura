@@ -1,7 +1,9 @@
 package br.com.alura.adopet.api.controller;
 
+import br.com.alura.adopet.api.dto.SolicitacaoCadastrarTutorDTO;
 import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.TutorRepository;
+import br.com.alura.adopet.api.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,22 +15,18 @@ public class TutorController {
 
     private final TutorRepository repository;
 
-    public TutorController(TutorRepository repository) {
+    private final TutorService service;
+
+    public TutorController(TutorRepository repository, TutorService service) {
         this.repository = repository;
+        this.service = service;
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody @Valid Tutor tutor) {
-        boolean telefoneJaCadastrado = repository.existsByTelefone(tutor.getTelefone());
-        boolean emailJaCadastrado = repository.existsByEmail(tutor.getEmail());
-
-        if (telefoneJaCadastrado || emailJaCadastrado) {
-            return ResponseEntity.badRequest().body("Dados já cadastrados para outro tutor!");
-        } else {
-            repository.save(tutor);
-            return ResponseEntity.ok().build();
-        }
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid SolicitacaoCadastrarTutorDTO tutor) {
+        this.service.cadastro(tutor);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping

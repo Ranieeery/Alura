@@ -1,6 +1,6 @@
 CREATE TABLE adocoes
 (
-    id                   BIGINT       NOT NULL AUTO_INCREM  ENT,
+    id                   SERIAL       NOT NULL,
     data                 TIME         NOT NULL,
     tutor_id             BIGINT       NOT NULL,
     pet_id               BIGINT       NOT NULL,

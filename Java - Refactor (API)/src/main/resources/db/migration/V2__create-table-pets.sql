@@ -1,5 +1,5 @@
 CREATE TABLE pets(
-    id        BIGINT        NOT NULL AUTO_INCREMENT,
+    id        SERIAL        NOT NULL,
     tipo      VARCHAR(100)  NOT NULL,
     nome      VARCHAR(100)  NOT NULL,
     raca      VARCHAR(100)  NOT NULL,

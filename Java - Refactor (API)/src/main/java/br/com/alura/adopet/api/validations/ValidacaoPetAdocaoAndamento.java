@@ -2,35 +2,25 @@ package br.com.alura.adopet.api.validations;
 
 import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDTO;
 import br.com.alura.adopet.api.exception.ValidacaoException;
-import br.com.alura.adopet.api.model.Adocao;
-import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.model.StatusAdocao;
 import br.com.alura.adopet.api.repository.AdocaoRepository;
-import br.com.alura.adopet.api.repository.PetRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class ValidacaoPetAdocaoAndamento implements ValidacaoSolicitacaoAdocao{
+public class ValidacaoPetAdocaoAndamento implements ValidacaoSolicitacaoAdocao {
 
     private final AdocaoRepository adocaoRepository;
 
-    private final PetRepository petRepository;
 
-    public ValidacaoPetAdocaoAndamento(AdocaoRepository adocaoRepository, PetRepository petRepository) {
+    public ValidacaoPetAdocaoAndamento(AdocaoRepository adocaoRepository) {
         this.adocaoRepository = adocaoRepository;
-        this.petRepository = petRepository;
     }
 
     public void validar(SolicitacaoAdocaoDTO dto) {
-        List<Adocao> adocoes = adocaoRepository.findAll();
-        Pet pet = petRepository.getReferenceById(dto.idPet());
+        boolean petAdocaoAndamento = adocaoRepository.existsByPetIdAndStatus(dto.idPet(), StatusAdocao.AGUARDANDO_AVALIACAO);
 
-        for (Adocao a : adocoes) {
-            if (a.getPet() == pet && a.getStatus() == StatusAdocao.AGUARDANDO_AVALIACAO) {
-                throw new ValidacaoException("Pet já está aguardando avaliação para ser adotado!");
-            }
+        if (petAdocaoAndamento) {
+            throw new ValidacaoException("Pet já está aguardando avaliação para ser adotado!");
         }
     }
 }

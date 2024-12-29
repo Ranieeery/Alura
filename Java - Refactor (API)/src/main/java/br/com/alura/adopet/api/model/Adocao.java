@@ -17,8 +17,8 @@ public class Adocao {
 
     private LocalDateTime data;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Tutor tutor;
+    @ManyToOne(fetch = FetchType.LAZY) //Lazy: carrega apenas quando for acessado
+    private Tutor tutor;               //Eagle: carrega tudo de uma vez
 
     @OneToOne(fetch = FetchType.LAZY)
     private Pet pet;

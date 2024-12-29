@@ -2,9 +2,6 @@ package br.com.alura.Service;
 
 import br.com.alura.Client.HttpConfiguration;
 import br.com.alura.Domain.Abrigo;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -28,12 +25,13 @@ public class AbrigoService {
 
         List<Abrigo> abrigoList = Arrays.stream(new ObjectMapper().readValue(responseBody, Abrigo[].class)).toList();
 
-        System.out.println("Abrigos cadastrados:");
-        for (Abrigo abrigo : abrigoList) {
-            long id = abrigo.getId();
-            String nome = abrigo.getNome();
-            System.out.println(id + " - " + nome);
+        if (abrigoList.isEmpty()) {
+            System.out.println("Nenhum abrigo cadastrado.");
+            return;
         }
+
+        System.out.println("Abrigos cadastrados:");
+        mostrarAbrigos(abrigoList);
     }
 
     public void cadastrarAbrigo() throws IOException, InterruptedException {
@@ -57,6 +55,14 @@ public class AbrigoService {
         } else if (statusCode == 400 || statusCode == 500) {
             System.out.println("Erro ao cadastrar o abrigo:");
             System.out.println(responseBody);
+        }
+    }
+
+    private void mostrarAbrigos(List<Abrigo> abrigoList) {
+        for (Abrigo abrigo : abrigoList) {
+            long id = abrigo.getId();
+            String nome = abrigo.getNome();
+            System.out.println(id + " - " + nome);
         }
     }
 }

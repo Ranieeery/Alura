@@ -1,5 +1,6 @@
 package br.com.alura;
 
+import br.com.alura.Client.HttpConfiguration;
 import br.com.alura.Service.AbrigoService;
 import br.com.alura.Service.PetService;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class AdopetConsoleApplication {
 
     public static void main(String[] args) {
+        HttpConfiguration client = new HttpConfiguration();
         AbrigoService abrigoService = new AbrigoService();
         PetService petService = new PetService();
 

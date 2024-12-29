@@ -6,6 +6,11 @@ public class Abrigo  {
     private String nome;
     private String telefone;
     private String email;
+    private Pet[] pets;
+
+    public Abrigo() {
+
+    }
 
     public Abrigo(String nome, String telefone, String email) {
         this.nome = nome;
@@ -27,5 +32,9 @@ public class Abrigo  {
 
     public long getId() {
         return id;
+    }
+
+    public Pet[] getPets() {
+        return pets;
     }
 }

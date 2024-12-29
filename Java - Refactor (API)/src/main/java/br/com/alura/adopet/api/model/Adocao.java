@@ -80,15 +80,12 @@ public class Adocao {
         return justificativaStatus;
     }
 
-    public void setJustificativaStatus(String justificativaStatus) {
-        this.justificativaStatus = justificativaStatus;
-    }
-
     public void aprovar() {
         this.status = StatusAdocao.APROVADO;
     }
 
-    public void reprovar() {
+    public void reprovar(String justificativa) {
         this.status = StatusAdocao.REPROVADO;
+        this.justificativaStatus = justificativa;
     }
 }

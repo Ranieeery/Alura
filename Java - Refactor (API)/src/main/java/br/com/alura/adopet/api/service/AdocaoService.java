@@ -46,12 +46,7 @@ public class AdocaoService {
 
         validacoes.forEach(v -> v.validar(dto));
 
-        Adocao adocao = new Adocao();
-        adocao.setPet(pet);
-        adocao.setTutor(tutor);
-        adocao.setMotivo(dto.motivo());
-        adocao.setData(LocalDateTime.now());
-        adocao.setStatus(StatusAdocao.AGUARDANDO_AVALIACAO);
+        Adocao adocao = new Adocao(pet, tutor, dto.motivo());
         repository.save(adocao);
 
         emailService.enviarEmail(adocao.getPet().getAbrigo().getEmail(), "Solicitação de adoção", "Olá " + adocao.getPet().getAbrigo().getNome() + "!\n\nUma solicitação de adoção foi registrada hoje para o pet: " + adocao.getPet().getNome() + ". \nFavor avaliar para aprovação ou reprovação.");
@@ -60,7 +55,7 @@ public class AdocaoService {
     public void aprovar(SolicitacaoAprovarDTO dto) {
         Adocao adocao = repository.getReferenceById(dto.idAdocao());
 
-        adocao.setStatus(StatusAdocao.APROVADO);
+        adocao.aprovar();
 
         emailService.enviarEmail(adocao.getTutor().getEmail(), "Adoção aprovada", "Parabéns " + adocao.getTutor().getNome() + "!\n\nSua adoção do pet " + adocao.getPet().getNome() + ", solicitada em " + adocao.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
     }
@@ -68,7 +63,7 @@ public class AdocaoService {
     public void reprovar(SolicitacaoReprovarDTO dto) {
         Adocao adocao = repository.getReferenceById(dto.idAdocao());
 
-        adocao.setStatus(StatusAdocao.REPROVADO);
+        adocao.reprovar(dto.justificativa());
         adocao.setJustificativaStatus(dto.justificativa());
 
         emailService.enviarEmail(adocao.getTutor().getEmail(), "Adoção reprovada", "Olá " + adocao.getTutor().getNome() + "!\n\nInfelizmente sua adoção do pet " + adocao.getPet().getNome() + ", solicitada em " + adocao.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")) + ", foi reprovada pelo abrigo " + adocao.getPet().getAbrigo().getNome() + " com a seguinte justificativa: " + adocao.getJustificativaStatus());

@@ -36,7 +36,7 @@ public class PetService {
         String responseBody = response.body();
 
         List<Pet> petList = Arrays.stream(new ObjectMapper().readValue(responseBody, Pet[].class)).toList();
-        
+
         System.out.println("Pets cadastrados:");
         for (Pet pet : petList) {
             long id = pet.getId();
@@ -65,7 +65,7 @@ public class PetService {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] campos = line.split(",");
-            Tipo tipo = Tipo.valueOf(campos[0]);
+            Tipo tipo = Tipo.valueOf(campos[0].toUpperCase());
             String nome = campos[1];
             String raca = campos[2];
             int idade = Integer.parseInt(campos[3]);

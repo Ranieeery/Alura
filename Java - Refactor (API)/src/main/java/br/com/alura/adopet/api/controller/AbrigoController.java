@@ -24,7 +24,7 @@ public class AbrigoController {
 
     private final PetService petService;
 
-    public AbrigoController(AbrigoRepository repository, AbrigoService service, PetService petService) {
+    public AbrigoController(AbrigoService service, PetService petService) {
         this.service = service;
         this.petService = petService;
     }

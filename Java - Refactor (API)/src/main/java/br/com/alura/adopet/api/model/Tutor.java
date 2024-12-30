@@ -1,6 +1,6 @@
 package br.com.alura.adopet.api.model;
 
-import br.com.alura.adopet.api.dto.SolicitacaoAtualizarTutorDTO;
+import br.com.alura.adopet.api.dto.AtualizarTutorDto;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
@@ -66,7 +66,7 @@ public class Tutor {
         return Objects.hash(id);
     }
 
-    public void atualizarTutor(@Valid SolicitacaoAtualizarTutorDTO tutor) {
+    public void atualizarTutor(@Valid AtualizarTutorDto tutor) {
         if (tutor.nome() != null) {
             this.nome = tutor.nome();
         }

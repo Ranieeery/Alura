@@ -39,19 +39,6 @@ public class Adocao {
         this.data = LocalDateTime.now();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Adocao adocao = (Adocao) o;
-        return Objects.equals(id, adocao.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
     public Long getId() {
         return id;
     }
@@ -82,6 +69,19 @@ public class Adocao {
 
     public void aprovar() {
         this.status = StatusAdocao.APROVADO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Adocao adocao = (Adocao) o;
+        return Objects.equals(id, adocao.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public void reprovar(String justificativa) {

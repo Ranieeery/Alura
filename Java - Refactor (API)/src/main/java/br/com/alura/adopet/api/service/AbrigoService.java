@@ -1,8 +1,12 @@
 package br.com.alura.adopet.api.service;
 
-import br.com.alura.adopet.api.dto.SolicitacaoCadastrarAbrigoDTO;
+import br.com.alura.adopet.api.dto.AbrigoDto;
+import br.com.alura.adopet.api.dto.CadastrarAbrigoDto;
+import br.com.alura.adopet.api.dto.PetDto;
 import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.repository.AbrigoRepository;
+import br.com.alura.adopet.api.repository.PetRepository;
+import br.com.alura.adopet.api.validations.ValidacaoAbrigoIdOuNome;
 import br.com.alura.adopet.api.validations.ValidacaoSolicitacaoAbrigo;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +17,38 @@ public class AbrigoService {
 
     private final AbrigoRepository repository;
 
-    private final List<ValidacaoSolicitacaoAbrigo> validacoes;
+    private final PetRepository petRepository;
 
-    public AbrigoService(AbrigoRepository repository, List<ValidacaoSolicitacaoAbrigo> validacoes) {
+    private final List<ValidacaoSolicitacaoAbrigo> validacaoSolicitacaoAbrigos;
+
+    private final List<ValidacaoAbrigoIdOuNome> validacaoAbrigoIdOuNomes;
+
+    public AbrigoService(AbrigoRepository repository, PetRepository petRepository, List<ValidacaoSolicitacaoAbrigo> validacoes, List<ValidacaoAbrigoIdOuNome> validacaoAbrigoIdOuNomes) {
         this.repository = repository;
-        this.validacoes = validacoes;
+        this.petRepository = petRepository;
+        this.validacaoSolicitacaoAbrigos = validacoes;
+        this.validacaoAbrigoIdOuNomes = validacaoAbrigoIdOuNomes;
     }
 
-    public void cadastrar(SolicitacaoCadastrarAbrigoDTO dto) {
-        validacoes.forEach(v -> v.validar(dto));
+    public void cadastrar(CadastrarAbrigoDto dto) {
+        validacaoSolicitacaoAbrigos.forEach(v -> v.validar(dto));
 
-        Abrigo abrigo = new Abrigo(dto.nome(), dto.telefone(), dto.email());
+        repository.save(new Abrigo(dto));
+    }
 
-        repository.save(abrigo);
+    public List<AbrigoDto> listar() {
+        return repository.findAll().stream().map(AbrigoDto::new).toList();
+    }
+
+    public List<PetDto> listarPets(String idOuNome) {
+        Abrigo abrigo = carregarAbrigo(idOuNome);
+
+        return petRepository.findByAbrigo(abrigo).stream().map(PetDto::new).toList();
+    }
+
+    public Abrigo carregarAbrigo(String idOuNome) {
+        validacaoAbrigoIdOuNomes.forEach(v -> v.validar(idOuNome));
+
+        return repository.findByNome(idOuNome).orElseThrow();
     }
 }

@@ -2,10 +2,14 @@ package br.com.alura.adopet.api.validations;
 
 import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDto;
 import br.com.alura.adopet.api.exception.ValidacaoException;
+import br.com.alura.adopet.api.model.Adocao;
 import br.com.alura.adopet.api.model.StatusAdocao;
+import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.AdocaoRepository;
 import br.com.alura.adopet.api.repository.TutorRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class ValidacaoTutorComLimiteAdocoes implements ValidacaoSolicitacaoAdocao {
@@ -20,16 +24,19 @@ public class ValidacaoTutorComLimiteAdocoes implements ValidacaoSolicitacaoAdoca
     }
 
     public void validar(SolicitacaoAdocaoDto dto) {
-        boolean tutorAdocaoAndamento = tutorRepository.existsByTutorIdAndStatus(dto.idTutor(), StatusAdocao.APROVADO);
+        List<Adocao> adocoes = adocaoRepository.findAll();
+        Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
 
-        int contador = 0;
+        for (Adocao a : adocoes) {
+            int contador = 0;
 
-        if (tutorAdocaoAndamento) {
-            contador = contador + 1;
-        }
+            if (a.getTutor() == tutor && a.getStatus() == StatusAdocao.APROVADO) {
+                contador = contador + 1;
+            }
 
-        if (contador == 5) {
-            throw new ValidacaoException("Tutor chegou ao limite máximo de 5 adoções!");
+            if (contador == 5) {
+                throw new ValidacaoException("Tutor chegou ao limite máximo de 5 adoções!");
+            }
         }
     }
 }

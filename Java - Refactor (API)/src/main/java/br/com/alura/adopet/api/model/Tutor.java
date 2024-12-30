@@ -1,7 +1,8 @@
 package br.com.alura.adopet.api.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import br.com.alura.adopet.api.dto.SolicitacaoAtualizarTutorDTO;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Objects;
@@ -63,5 +64,17 @@ public class Tutor {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void atualizarTutor(@Valid SolicitacaoAtualizarTutorDTO tutor) {
+        if (tutor.nome() != null) {
+            this.nome = tutor.nome();
+        }
+        if (tutor.telefone() != null) {
+            this.telefone = tutor.telefone();
+        }
+        if (tutor.email() != null) {
+            this.email = tutor.email();
+        }
     }
 }

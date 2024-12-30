@@ -24,7 +24,6 @@ public class ValidacaoTutorAdocaoAndamento implements ValidacaoSolicitacaoAdocao
 
         if (tutorAdocaoAndamento) {
             throw new ValidacaoException("Tutor já possui outra adoção aguardando avaliação!");
-
         }
     }
 }

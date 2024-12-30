@@ -1,10 +1,12 @@
 package br.com.alura.adopet.api.service;
 
+import br.com.alura.adopet.api.dto.CadastrarPetDto;
+import br.com.alura.adopet.api.dto.PetDto;
+import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,9 +18,11 @@ public class PetService {
         this.repository = repository;
     }
 
-    public List<Pet> listar() {
-        List<Pet> pets = repository.findAllByAdotadoFalse();
+    public List<PetDto> listar() {
+        return repository.findAllByAdotadoFalse().stream().map(PetDto::new).toList();
+    }
 
-        return new ArrayList<>(pets);
+    public void cadastroPet(Abrigo abrigo, CadastrarPetDto dto) {
+        repository.save(new Pet(dto, abrigo));
     }
 }

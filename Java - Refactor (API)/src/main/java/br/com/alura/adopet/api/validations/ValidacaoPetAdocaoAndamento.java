@@ -1,6 +1,6 @@
 package br.com.alura.adopet.api.validations;
 
-import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDTO;
+import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDto;
 import br.com.alura.adopet.api.exception.ValidacaoException;
 import br.com.alura.adopet.api.model.StatusAdocao;
 import br.com.alura.adopet.api.repository.AdocaoRepository;
@@ -16,7 +16,7 @@ public class ValidacaoPetAdocaoAndamento implements ValidacaoSolicitacaoAdocao {
         this.adocaoRepository = adocaoRepository;
     }
 
-    public void validar(SolicitacaoAdocaoDTO dto) {
+    public void validar(SolicitacaoAdocaoDto dto) {
         boolean petAdocaoAndamento = adocaoRepository.existsByPetIdAndStatus(dto.idPet(), StatusAdocao.AGUARDANDO_AVALIACAO);
 
         if (petAdocaoAndamento) {

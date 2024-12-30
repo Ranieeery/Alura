@@ -1,7 +1,7 @@
 package br.com.alura.adopet.api.controller;
 
-import br.com.alura.adopet.api.dto.SolicitacaoAtualizarTutorDTO;
-import br.com.alura.adopet.api.dto.SolicitacaoCadastrarTutorDTO;
+import br.com.alura.adopet.api.dto.AtualizarTutorDto;
+import br.com.alura.adopet.api.dto.CadastrarTutorDto;
 import br.com.alura.adopet.api.exception.ValidacaoException;
 import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.TutorRepository;
@@ -15,18 +15,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tutores")
 public class TutorController {
 
-    private final TutorRepository repository;
-
     private final TutorService service;
 
     public TutorController(TutorRepository repository, TutorService service) {
-        this.repository = repository;
         this.service = service;
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody @Valid SolicitacaoCadastrarTutorDTO tutor) {
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid CadastrarTutorDto tutor) {
         try {
             this.service.cadastrar(tutor);
             return ResponseEntity.ok().build();
@@ -37,10 +34,10 @@ public class TutorController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<SolicitacaoAtualizarTutorDTO> atualizar(@RequestBody @Valid SolicitacaoAtualizarTutorDTO dto) {
+    public ResponseEntity<AtualizarTutorDto> atualizar(@RequestBody @Valid AtualizarTutorDto dto) {
         Tutor tutor = this.service.atualizar(dto);
 
-        return ResponseEntity.ok(new SolicitacaoAtualizarTutorDTO(tutor));
+        return ResponseEntity.ok(new AtualizarTutorDto(tutor));
     }
 
 }

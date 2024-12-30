@@ -37,9 +37,10 @@ public class TutorController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<String> atualizar(@RequestBody @Valid SolicitacaoAtualizarTutorDTO tutor) {
-        this.service.atualizar(tutor);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<SolicitacaoAtualizarTutorDTO> atualizar(@RequestBody @Valid SolicitacaoAtualizarTutorDTO dto) {
+        Tutor tutor = this.service.atualizar(dto);
+
+        return ResponseEntity.ok(new SolicitacaoAtualizarTutorDTO(tutor));
     }
 
 }

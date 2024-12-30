@@ -29,9 +29,11 @@ public class TutorService {
         repository.save(tutor);
     }
 
-    public void atualizar(SolicitacaoAtualizarTutorDTO dto) {
+    public Tutor atualizar(SolicitacaoAtualizarTutorDTO dto) {
         Tutor tutor = repository.getReferenceById(dto.idTutor());
 
         tutor.atualizarTutor(dto);
+
+        return tutor;
     }
 }

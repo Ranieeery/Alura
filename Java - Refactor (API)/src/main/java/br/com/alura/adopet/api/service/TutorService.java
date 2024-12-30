@@ -1,5 +1,6 @@
 package br.com.alura.adopet.api.service;
 
+import br.com.alura.adopet.api.dto.SolicitacaoAtualizarTutorDTO;
 import br.com.alura.adopet.api.dto.SolicitacaoCadastrarTutorDTO;
 import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.TutorRepository;
@@ -20,11 +21,17 @@ public class TutorService {
         this.validacoes = validacoes;
     }
 
-    public void cadastro(SolicitacaoCadastrarTutorDTO dto) {
+    public void cadastrar(SolicitacaoCadastrarTutorDTO dto) {
         validacoes.forEach(v -> v.validar(dto));
 
         Tutor tutor = new Tutor(dto.nome(), dto.telefone(), dto.email());
 
         repository.save(tutor);
+    }
+
+    public void atualizar(SolicitacaoAtualizarTutorDTO dto) {
+        Tutor tutor = repository.getReferenceById(dto.idTutor());
+
+        tutor.atualizarTutor(dto);
     }
 }

@@ -19,4 +19,10 @@ public class Rules {
         %s
         """.formatted(Examples.getExamplesRules());
     }
+
+    public static String getRulesReview() {
+        return """
+        Rules:
+        """;
+    }
 }

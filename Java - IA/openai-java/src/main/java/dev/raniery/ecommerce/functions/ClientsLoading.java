@@ -2,6 +2,7 @@ package dev.raniery.ecommerce.functions;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 public class ClientsLoading {
     public static String loadClients(String path) {
@@ -20,9 +21,9 @@ public class ClientsLoading {
         }
     }
 
-    public static String saveAnalysis(String file, String analysis) {
+    public static void saveAnalysis(String file, String analysis) {
         try {
-            return Files.readAllLines(Path.of("src/main/resources/analise-sentimentos-" + file + ".txt")).toString();
+            Files.writeString(Path.of("src/main/resources/reviews/analise-sentimentos-" + file + ".txt"), analysis, StandardOpenOption.CREATE_NEW);
         } catch (Exception e) {
             throw new RuntimeException("Error saving analysis", e);
         }

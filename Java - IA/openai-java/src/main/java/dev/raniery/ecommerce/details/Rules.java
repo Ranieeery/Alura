@@ -15,6 +15,7 @@ public class Rules {
         8. Don't speak, just provide the product names.
         9. The answer should be a ordered list of product names.
         10. If the input is a list of clients last purchases, return just one individual recommendations for each client based on their preferences.
+        11. If the input is a list of clients last purchases, the answer can't be the same product that the client already bought.
         %s
         """.formatted(Examples.getExamplesRules());
     }

@@ -14,7 +14,7 @@ public class FineTunneling {
             String userMessage = scanner.nextLine();
 
             Chat chatResponse = integrationTest.ProductCategorizer(userMessage);
-            
+
             String response = chatResponse.getChoices().getFirst().getMessage().getContent();
 
             if (Objects.equals(response, placeholder)) {
@@ -24,4 +24,11 @@ public class FineTunneling {
             return chatResponse;
         }
     }
+
+    public static Chat getResponse(String userMessage) {
+        IntegrationTest integrationTest = new IntegrationTest();
+
+        return integrationTest.ProductCategorizer(userMessage);
+    }
 }
+

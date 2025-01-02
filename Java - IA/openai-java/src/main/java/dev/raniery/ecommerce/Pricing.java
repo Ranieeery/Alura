@@ -5,15 +5,17 @@ import java.math.BigDecimal;
 public class Pricing {
     public static void calculatePrice(int tokensCount, String model) {
 
-        int priceToken;
+        BigDecimal priceToken;
 
-        if (model.equals("gpt-4-0314")) {
-            priceToken = 1;
+        if (model.equals("chatgpt-4o-latest")) {
+            priceToken = BigDecimal.valueOf(5);
+        } else {
+            priceToken = BigDecimal.valueOf(0.5);
         }
 
         BigDecimal price = new BigDecimal(tokensCount)
             .divide(new BigDecimal(1000000))
-            .multiply(new BigDecimal(0.50));
+            .multiply(priceToken);
 
         System.out.println("This request costs: $" + price);
     }

@@ -39,9 +39,9 @@ public class Examples {
             cliente1,"Bolsa Feminina FashionLady, Loção Corporal BodyFresh, Creme Hidratante ExtraSoft, Anel de Noivado EternalLove, Corda de Pular JumpFit, Fitness, Luvas de Boxe FightMaster, Kit de Pintura ArtMaster"
             cliente2,"Romance Amor Proibido, Relógio de Parede VintageClock, Vinho Tinto ClassicRed, Carregador Portátil PowerGo, Escova Dental Elétrica CleanTeeth, Refrigerante SparklingFizz, Conjunto de Jóias SparkleSet, Filme de Ação ActionForce"
             answer:
-            cliente0: Beach towel
-            cliente1: Ring EternalLove
-            cliente2: Amazon Kindle
+            Client 01: Beach towel
+            Client 02: Ring EternalLove
+            Client 03: Amazon Kindle
             """;
     }
 }

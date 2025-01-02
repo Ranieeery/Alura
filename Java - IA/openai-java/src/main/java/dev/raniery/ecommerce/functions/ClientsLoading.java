@@ -11,4 +11,20 @@ public class ClientsLoading {
             throw new RuntimeException("Error loading clients file", e);
         }
     }
+
+    public static String loadFiles(String file) {
+        try {
+            return Files.readAllLines(Path.of("src/main/resources/avaliacoes-" + file + ".txt")).toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error loading files", e);
+        }
+    }
+
+    public static String saveAnalysis(String file, String analysis) {
+        try {
+            return Files.readAllLines(Path.of("src/main/resources/analise-sentimentos-" + file + ".txt")).toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving analysis", e);
+        }
+    }
 }

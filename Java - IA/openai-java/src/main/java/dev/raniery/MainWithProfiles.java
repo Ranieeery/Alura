@@ -10,8 +10,8 @@ import static dev.raniery.ecommerce.functions.FineTunneling.getResponse;
 
 public class MainWithProfiles {
     public static void main(String[] args) {
-        String userMessage = ClientsLoading.loadClients("src/main/resources/clients10.csv");
         String systemMessage = SystemMessageProductRecommendation.getString();
+        String userMessage = ClientsLoading.loadClients("src/main/resources/clients10.csv");
 
         Chat response = getResponse(userMessage, systemMessage);
 

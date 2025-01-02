@@ -32,4 +32,8 @@ public class IntegrationTest {
         CompletableFuture<Chat> futureChat = openAI.chatCompletions().create(chatRequest);
         return futureChat.join();
     }
+
+    public void loadFiles() {
+        // Load files
+    }
 }

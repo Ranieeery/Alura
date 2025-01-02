@@ -6,21 +6,20 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class FineTunneling {
-    public static Chat getResponse(String userMessage) {
+    public static Chat getResponse() {
         IntegrationTest integrationTest = new IntegrationTest();
-        Chat chatResponse;
-        String response;
         String placeholder = "I'm sorry, I can't help you with that.";
 
         try (Scanner scanner = new Scanner(System.in)) {
-            chatResponse = integrationTest.ProductCategorizer(userMessage);
-            response = chatResponse.getChoices().getFirst().getMessage().getContent();
+            String userMessage = scanner.nextLine();
+
+            Chat chatResponse = integrationTest.ProductCategorizer(userMessage);
+            
+            String response = chatResponse.getChoices().getFirst().getMessage().getContent();
 
             if (Objects.equals(response, placeholder)) {
                 System.out.printf("%s Please try again.\n", response);
-
-                userMessage = scanner.nextLine();
-                getResponse(userMessage);
+                getResponse();
             }
             return chatResponse;
         }

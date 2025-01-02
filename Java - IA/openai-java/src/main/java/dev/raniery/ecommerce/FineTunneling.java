@@ -19,7 +19,7 @@ public class FineTunneling {
 
             if (Objects.equals(response, placeholder)) {
                 System.out.printf("%s Please try again.\n", response);
-                getResponse();
+                return getResponse();
             }
             return chatResponse;
         }

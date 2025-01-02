@@ -1,8 +1,9 @@
 package dev.raniery;
 
+import dev.raniery.ecommerce.details.SystemMessageProductRecommendation;
 import dev.raniery.ecommerce.functions.ClientsLoading;
-import dev.raniery.ecommerce.Pricing;
-import dev.raniery.ecommerce.TokensCount;
+import dev.raniery.ecommerce.functions.Pricing;
+import dev.raniery.ecommerce.functions.TokensCount;
 import io.github.sashirestela.openai.domain.chat.Chat;
 
 import static dev.raniery.ecommerce.functions.FineTunneling.getResponse;
@@ -10,8 +11,9 @@ import static dev.raniery.ecommerce.functions.FineTunneling.getResponse;
 public class MainWithProfiles {
     public static void main(String[] args) {
         String userMessage = ClientsLoading.loadClients("src/main/resources/clients10.csv");
+        String systemMessage = SystemMessageProductRecommendation.getString();
 
-        Chat response = getResponse(userMessage);
+        Chat response = getResponse(userMessage, systemMessage);
 
         String chatResponse = response.getChoices().getFirst().getMessage().getContent();
         String model = response.getModel();

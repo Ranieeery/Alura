@@ -1,4 +1,4 @@
-package dev.raniery.ecommerce;
+package dev.raniery.ecommerce.functions;
 
 import com.knuddels.jtokkit.Encodings;
 import com.knuddels.jtokkit.api.*;

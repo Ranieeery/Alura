@@ -28,7 +28,13 @@ public class IntegrationTest {
             question: I want some new athletic shoes
             answer: 4. Nike Air Zoom Pegasus 38
             
-            
+            Rules:
+            1. You can only recommend products from the categories listed above.
+            2. You can only recommend one product per response.
+            3. If the user asks for something not listed above, you should respond with "I'm sorry, I can't help you with that."
+            4. You should provide 3-5 recommendations.
+            5. You can't recommend the same product twice.
+            6. Answer in english.
             """.formatted(Categories.getCategories());
 
         assert OPENAI_API_KEY != null;
@@ -40,9 +46,9 @@ public class IntegrationTest {
             .model("gpt-4o-mini")
             .message(SystemMessage.of(userMessage))
             .message(UserMessage.of(systemMessage))
-            .temperature(0.5)
-            .n(5)
+            .temperature(0.7)
             .maxCompletionTokens(300)
+//            .n(5)
             .build();
 
         CompletableFuture<Chat> futureChat = openAI.chatCompletions().create(chatRequest);

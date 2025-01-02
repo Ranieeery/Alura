@@ -1,4 +1,4 @@
-package dev.raniery.ecommerce;
+package dev.raniery.ecommerce.functions;
 
 import io.github.sashirestela.openai.domain.chat.Chat;
 

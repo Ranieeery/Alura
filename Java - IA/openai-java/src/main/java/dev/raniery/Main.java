@@ -4,7 +4,7 @@ import dev.raniery.ecommerce.Pricing;
 import dev.raniery.ecommerce.TokensCount;
 import io.github.sashirestela.openai.domain.chat.Chat;
 
-import static dev.raniery.ecommerce.FineTunneling.getResponse;
+import static dev.raniery.ecommerce.functions.FineTunneling.getResponse;
 
 public class Main {
     public static void main(String[] args) {

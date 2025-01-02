@@ -1,5 +1,6 @@
-package dev.raniery.ecommerce;
+package dev.raniery.ecommerce.functions;
 
+import dev.raniery.ecommerce.TokensCount;
 import dev.raniery.ecommerce.details.Categories;
 import dev.raniery.ecommerce.details.Examples;
 import dev.raniery.ecommerce.details.Rules;

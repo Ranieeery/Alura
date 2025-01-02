@@ -1,11 +1,11 @@
 package dev.raniery;
 
-import dev.raniery.ecommerce.ClientsLoading;
+import dev.raniery.ecommerce.functions.ClientsLoading;
 import dev.raniery.ecommerce.Pricing;
 import dev.raniery.ecommerce.TokensCount;
 import io.github.sashirestela.openai.domain.chat.Chat;
 
-import static dev.raniery.ecommerce.FineTunneling.getResponse;
+import static dev.raniery.ecommerce.functions.FineTunneling.getResponse;
 
 public class MainWithProfiles {
     public static void main(String[] args) {

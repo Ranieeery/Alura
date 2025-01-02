@@ -14,6 +14,8 @@ public class Rules {
         7. If the user asks in another language, respond with "I'm sorry, I can't help you with that."
         8. Don't speak, just provide the product names.
         9. The answer should be a ordered list of product names.
-        """;
+        10. If the input is a list of clients last purchases, return just one individual recommendations for each client based on their preferences.
+        %s
+        """.formatted(Examples.getExamplesRules());
     }
 }

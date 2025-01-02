@@ -1,5 +1,6 @@
 package dev.raniery;
 
+import dev.raniery.ecommerce.ClientsLoading;
 import dev.raniery.ecommerce.Pricing;
 import dev.raniery.ecommerce.TokensCount;
 
@@ -7,15 +8,15 @@ import java.util.Scanner;
 
 import static dev.raniery.ecommerce.FineTunneling.getResponse;
 
-public class Main {
+public class MainWithProfiles {
     public static void main(String[] args) {
-        System.out.println("Hi, I'm a product recommendation system. What are you looking for?");
-        String userMessage = new Scanner(System.in).nextLine();
+        String userMessage = ClientsLoading.loadClients();
 
         String chatResponse = getResponse(userMessage).getChoices().getFirst().getMessage().getContent();
         String model = getResponse(userMessage).getModel();
 
         System.out.println(chatResponse);
+        System.out.println("Model: " + model);
 
         Pricing.calculatePrice(TokensCount.count(chatResponse), model);
     }

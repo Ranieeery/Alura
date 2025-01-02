@@ -8,23 +8,21 @@ import java.util.Scanner;
 public class FineTunneling {
     public static Chat getResponse(String userMessage) {
         IntegrationTest integrationTest = new IntegrationTest();
-        Chat chatResponse = integrationTest.ProductCategorizer(userMessage);
-
+        Chat chatResponse;
+        String response;
         String placeholder = "I'm sorry, I can't help you with that.";
-        String response = chatResponse.getChoices().getFirst().getMessage().getContent();
 
-        while (Objects.equals(response, placeholder)) {
-            System.out.println(placeholder + " Please try again.");
+        try (Scanner scanner = new Scanner(System.in)) {
+            chatResponse = integrationTest.ProductCategorizer(userMessage);
+            response = chatResponse.getChoices().getFirst().getMessage().getContent();
 
-            String userMessageNew = new Scanner(System.in).nextLine();
+            if (Objects.equals(response, placeholder)) {
+                System.out.printf("%s Please try again.\n", response);
 
-            chatResponse = integrationTest.ProductCategorizer(userMessageNew);
-
-            if (!Objects.equals(chatResponse.getChoices().getFirst().getMessage().getContent(), placeholder)) {
-                break;
+                userMessage = scanner.nextLine();
+                getResponse(userMessage);
             }
+            return chatResponse;
         }
-
-        return chatResponse;
     }
 }

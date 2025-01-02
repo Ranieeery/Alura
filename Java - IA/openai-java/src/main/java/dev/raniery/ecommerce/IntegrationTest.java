@@ -33,11 +33,13 @@ public class IntegrationTest {
             .apiKey(OPENAI_API_KEY)
             .build();
 
+        var model = TokensCount.count(userMessage) > 16385 ? "gpt-4-0314" :  "gpt-3.5-turbo-0125";
+
         ChatRequest chatRequest = ChatRequest.builder()
-            .model("gpt-3.5-turbo-0125")
-            .message(SystemMessage.of(userMessage))
-            .message(UserMessage.of(systemMessage))
-            .temperature(0.9)
+            .model(model)
+            .message(SystemMessage.of(systemMessage))
+            .message(UserMessage.of(userMessage))
+            .temperature(0.7)
             .maxCompletionTokens(300)
 //            .n(5)
             .build();

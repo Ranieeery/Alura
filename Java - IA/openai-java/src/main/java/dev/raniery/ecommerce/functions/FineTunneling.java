@@ -3,8 +3,14 @@ package dev.raniery.ecommerce.functions;
 import dev.raniery.ecommerce.IntegrationTest;
 import io.github.sashirestela.openai.domain.chat.Chat;
 
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class FineTunneling {
     public static Chat getResponse(String systemMessage) {
@@ -14,15 +20,15 @@ public class FineTunneling {
         try (Scanner scanner = new Scanner(System.in)) {
             String userMessage = scanner.nextLine();
 
-            Chat chatResponse = integrationTest.ProductCategorizer(userMessage, systemMessage);
+            Chat response = integrationTest.ProductCategorizer(userMessage, systemMessage);
 
-            String response = chatResponse.getChoices().getFirst().getMessage().getContent();
+            String chatResponse = response.getChoices().getFirst().getMessage().getContent();
 
-            if (Objects.equals(response, placeholder)) {
+            if (Objects.equals(chatResponse, placeholder)) {
                 System.out.printf("%s Please try again.\n", response);
                 return getResponse(systemMessage);
             }
-            return chatResponse;
+            return response;
         }
     }
 
@@ -32,20 +38,28 @@ public class FineTunneling {
         return integrationTest.ProductCategorizer(userMessage, systemMessage);
     }
 
-    public static Chat analysis(String systemMessage) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Enter the file to load the reviews:");
-            String file = scanner.nextLine();
+    public static void analysis(String systemMessage) {
+        Path dir = Paths.get("src/main/resources/reviews");
+        try (Stream<Path> pathStream = Files.walk(dir, 1)) {
+            BigDecimal total = new BigDecimal(0);
+            List<Path> files = pathStream.filter(path -> path.toString().endsWith(".txt")).toList();
 
-            String prompt = ClientsLoading.loadFiles(file);
+            for (Path file : files) {
+                System.out.println("Analyzing file: " + file.getFileName());
+                String prompt = ClientsLoading.loadFiles(file);
 
-            Chat chatResponse = getResponse(prompt, systemMessage);
+                Chat response = getResponse(prompt, systemMessage);
 
-            String response = chatResponse.getChoices().getFirst().getMessage().getContent();
+                String chatResponse = response.getChoices().getFirst().getMessage().getContent();
 
-            ClientsLoading.saveAnalysis(file, response);
-            return chatResponse;
+                ClientsLoading.saveAnalysis(file.getFileName().toString(), chatResponse);
+
+                System.out.println("Analysis completed.");
+
+                total = total.add(Pricing.calculatePrice(TokensCount.count(chatResponse), response.getModel(), 1));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error analyzing files", e);
         }
     }
 }
-

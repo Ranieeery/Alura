@@ -15,7 +15,7 @@ public class ClientsLoading {
 
     public static String loadFiles(String file) {
         try {
-            return Files.readAllLines(Path.of("src/main/resources/avaliacoes-" + file + ".txt")).toString();
+            return Files.readAllLines(Path.of("src/main/resources/reviews/avaliacoes-" + file + ".txt")).toString();
         } catch (Exception e) {
             throw new RuntimeException("Error loading files", e);
         }
@@ -23,7 +23,7 @@ public class ClientsLoading {
 
     public static void saveAnalysis(String file, String analysis) {
         try {
-            Files.writeString(Path.of("src/main/resources/reviews/analise-sentimentos-" + file + ".txt"), analysis, StandardOpenOption.CREATE_NEW);
+            Files.writeString(Path.of("src/main/resources/reviews/output/analise-sentimentos-" + file + ".txt"), analysis, StandardOpenOption.CREATE_NEW);
         } catch (Exception e) {
             throw new RuntimeException("Error saving analysis", e);
         }

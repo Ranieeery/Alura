@@ -32,28 +32,35 @@ public class IntegrationTest {
             .temperature(0.7)
             .build();
 
-        CompletableFuture<Chat> futureChat = tries(openAI, chatRequest);
+        CompletableFuture<Chat> futureChat = null;
+
+        try {
+            futureChat = tries(openAI, chatRequest);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Error creating chat request", e);
+        }
 
         return futureChat.join();
     }
 
-    public CompletableFuture<Chat> tries(SimpleOpenAI openAI, ChatRequest chatRequest) {
+    public CompletableFuture<Chat> tries(SimpleOpenAI openAI, ChatRequest chatRequest) throws InterruptedException {
         int tries = 0;
+        int seconds = 5;
         while (tries < 3) {
             try {
                 return openAI.chatCompletions().create(chatRequest);
             } catch (AuthenticationException e) {
                 throw new RuntimeException("Invalid API Key");
             } catch (OpenAIException.RateLimitException e) {
-                throw new RuntimeException("Rate Limit Exceeded");
+                tries++;
+                Thread.sleep(1000 * seconds);
+                seconds *= 2;
+                throw new RuntimeException("Rate Limit Exceeded, try number: " + tries + " of 3. Waiting " + seconds + " seconds");
             } catch (InternalServerException e) {
                 tries++;
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException("Error sleeping thread", ex);
-                }
-                throw new RuntimeException("Internal Server Error, try number: " + tries + " of 3");
+                Thread.sleep(1000 * seconds);
+                seconds *= 2;
+                throw new RuntimeException("Internal Server Error, try number: " + tries + " of 3. Waiting " + seconds + " seconds");
             }
         }
 

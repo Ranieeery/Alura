@@ -25,7 +25,7 @@ public class FineTunneling {
             String chatResponse = response.getChoices().getFirst().getMessage().getContent();
 
             if (Objects.equals(chatResponse, placeholder)) {
-                System.out.printf("%s Please try again.\n", response);
+                System.out.printf("%s Please try again.\n", placeholder);
                 return getResponse(systemMessage);
             }
             return response;

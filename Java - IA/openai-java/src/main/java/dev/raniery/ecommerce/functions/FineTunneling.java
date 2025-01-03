@@ -41,25 +41,34 @@ public class FineTunneling {
     public static void analysis(String systemMessage) {
         Path dir = Paths.get("src/main/resources/reviews");
         try (Stream<Path> pathStream = Files.walk(dir, 1)) {
-            BigDecimal total = new BigDecimal(0);
             List<Path> files = pathStream.filter(path -> path.toString().endsWith(".txt")).toList();
 
-            for (Path file : files) {
-                System.out.println("Analyzing file: " + file.getFileName());
-                String prompt = ClientsLoading.loadFiles(file);
+            fileLoop(files, systemMessage);
 
-                Chat response = getResponse(prompt, systemMessage);
-
-                String chatResponse = response.getChoices().getFirst().getMessage().getContent();
-
-                ClientsLoading.saveAnalysis(file.getFileName().toString(), chatResponse);
-
-                System.out.println("Analysis completed.");
-
-                total = total.add(Pricing.calculatePrice(TokensCount.count(chatResponse), response.getModel(), 1));
-            }
         } catch (Exception e) {
             throw new RuntimeException("Error analyzing files", e);
         }
+    }
+
+    public static void fileLoop(List<Path> files, String systemMessage) {
+
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (Path file : files) {
+            System.out.println("Analyzing file: " + file.getFileName());
+            String prompt = ClientsLoading.loadFiles(file);
+
+            Chat response = getResponse(prompt, systemMessage);
+
+            String chatResponse = response.getChoices().getFirst().getMessage().getContent();
+
+            ClientsLoading.saveAnalysis(file.getFileName().toString(), chatResponse);
+
+            System.out.println("Analysis completed.");
+
+            total = total.add(Pricing.calculatePrice(TokensCount.count(chatResponse), response.getModel(), 1));
+        }
+
+        System.out.println("This request costs: $" + total);
     }
 }
